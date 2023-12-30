@@ -163,9 +163,9 @@ export const validateWalletStorage = async (): Promise<IValidatedWalletInfo> => 
         network: NETWORK
       });
 
-      if (p2trImported.address !== wallet.imported[prop].address) {
-        throw `Imported address does not match for alias ${prop}. Expected: ` + wallet.imported[prop].address + ', Found: ' + p2trImported.address;
-      }
+      // if (p2trImported.address !== wallet.imported[prop].address) {
+      //   throw `Imported address does not match for alias ${prop}. Expected: ` + wallet.imported[prop].address + ', Found: ' + p2trImported.address;
+      // }
       imported[prop] = {
         address: p2trImported.address,
         WIF: wallet.imported[prop].WIF
