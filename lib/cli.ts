@@ -1570,7 +1570,13 @@ program.command('mint-dft')
       const config: ConfigurationInterface = validateCliInputs();
       ticker = ticker.toLowerCase();
       const atomicals = new Atomicals(ElectrumApi.createClient(process.env.ELECTRUMX_PROXY_BASE_URL || ''));
-      let initialOwnerAddress = resolveAddress(walletInfo, options.initialowner, walletInfo.primary);
+      let ReceiveWallet;
+      if (options.initialowner) {
+          ReceiveWallet = options.initialowner;
+      } else {
+          ReceiveWallet = walletInfo.primary.address;
+      }
+      let initialOwnerAddress = resolveAddress(walletInfo, ReceiveWallet, walletInfo.primary);
       //let walletRecord = resolveWalletAliasNew(walletInfo, options.initialowner, walletInfo.primary);
       let fundingRecord = resolveWalletAliasNew(walletInfo, options.funding, walletInfo.funding);
       const sats = parseInt(options.satsbyte);
